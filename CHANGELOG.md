@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.2](https://github.com/Avkroken/Politiker/compare/v0.10.1...v0.10.2) (2026-09-05)
+
+
+### Documentation
+
+* clarify repository-specific governance ([#440](https://github.com/Avkroken/Politiker/issues/440)) ([141aac3](https://github.com/Avkroken/Politiker/commit/141aac3929e23f24ae153b8b504bf7752d43ed9b))
+
 ## [0.10.1](https://github.com/Avkroken/Politiker/compare/v0.10.0...v0.10.1) (2026-09-05)
 
 
