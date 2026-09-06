@@ -1,20 +1,10 @@
 # CI, deploy och release
 
-## Required CI
-
-Repositoryts required status checks är `CI / required` och `docker`.
+## CI
 
 `.github/workflows/ci.yml` producerar `CI / required` och verifierar appens låsta Node-beroenden, `npm run validate`, Wrangler dry-run för `log-archive` samt Python-koden under `kontakter/`.
 
-`.github/workflows/docker.yml` producerar `docker`, bygger `kontakter/scraper`, kör Trivy och laddar SARIF till GitHub Code Scanning. Organisationens Trivy-ruleset blockerar security alerts från High och uppåt.
-
-Organisationens `main`-ruleset kräver dessutom den centrala OSV-workflowen från `Avkroken/.github`. På vanliga pull requests kör den `scan-pr`; i merge queue kör den `scan-merge-group`. `scan-pr / osv-scan` är inte en separat organization-level required status check.
-
-CodeQL merge protection, review-thread resolution, squash-only och övriga gemensamma merge-regler hanteras centralt av organisationens aktiva rulesets. Repositoryt använder merge queue.
-
-## Security automation
-
-GitHubs native Code Scanning, Copilot Autofix och Dependabot-funktioner ska användas före repositoryspecifika remediationkedjor. Repository-CI ska inte skapa remediation-branches eller PR:er, lagra egna säkerhetsalert-snapshots eller bygga en separat remediationkö.
+`.github/workflows/docker.yml` producerar `docker`, bygger `kontakter/scraper`, kör Trivy och laddar SARIF till GitHub Code Scanning.
 
 ## Production deploy
 
@@ -34,9 +24,9 @@ Workers Builds watch paths:
 
 ## Release
 
-`.github/workflows/release.yml` anropar den SHA-pinnade centrala Release Please-workflowen i `Avkroken/.github` på push till `main` och manuellt via `workflow_dispatch`.
+`.github/workflows/release.yml` anropar den centrala Release Please-workflowen i `Avkroken/.github` på push till `main` och manuellt via `workflow_dispatch`.
 
-Release Please håller en Release PR uppdaterad från Conventional Commits. `feat:` ger normalt minor, `fix:` patch och breaking changes major. Release PR:n går genom samma CI, reviews, rulesets och merge queue som annan kod; automationen begär bara native auto-merge och bypassar inget.
+Release Please håller en Release PR uppdaterad från Conventional Commits. `feat:` ger normalt minor, `fix:` patch och breaking changes major.
 
 `release-please-config.json`, `.release-please-manifest.json` och `version.txt` håller repositoryts stabila SemVer-version. Den första migrerade basversionen är den redan publicerade `v0.8.13`.
 
