@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.10.4](https://github.com/Avkroken/Politiker/compare/v0.10.3...v0.10.4) (2026-09-06)
+
+
+### Documentation
+
+* remove duplicated GitHub governance ([2e9e905](https://github.com/Avkroken/Politiker/commit/2e9e905d969f357561bdee1253f69a9ac0e29619))
+* rensa duplicerad GitHub-governance ([#453](https://github.com/Avkroken/Politiker/issues/453)) ([2e9e905](https://github.com/Avkroken/Politiker/commit/2e9e905d969f357561bdee1253f69a9ac0e29619))
+
 ## [0.10.3](https://github.com/Avkroken/Politiker/compare/v0.10.2...v0.10.3) (2026-09-06)
 
 
