@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.3](https://github.com/Avkroken/Politiker/compare/v0.10.2...v0.10.3) (2026-09-06)
+
+
+### Documentation
+
+* förenkla REPO.md på svenska ([#448](https://github.com/Avkroken/Politiker/issues/448)) ([cfdc88d](https://github.com/Avkroken/Politiker/commit/cfdc88d681d8b417817f49e81f7b4166ffd3af1b))
+
 ## [0.10.2](https://github.com/Avkroken/Politiker/compare/v0.10.1...v0.10.2) (2026-09-05)
 
 
