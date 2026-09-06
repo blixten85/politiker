@@ -1,26 +1,23 @@
 # REPO.md
 
-`politiker` is a Cloudflare Worker application with shared runtime code, D1 migrations, a log-archive Worker and Python contact-data tooling under `kontakter/`.
+`Politiker` är en Cloudflare Worker-applikation med delad runtime-kod, D1-migreringar, en loggarkiv-Worker och Python-verktyg för kontaktdata under `kontakter/`.
 
-## Runtime and data ownership
+## Runtime och dataägande
 
-- Cloudflare D1 is the canonical runtime data source. Do not use Git as a production database or export live D1 snapshots into the repository.
-- `app/wrangler.jsonc` is the source of truth for versioned Worker configuration.
-- Cloudflare Workers Builds owns production deployment from `main`; GitHub Actions validates but does not duplicate production deployment.
-- The app Worker is the sole D1 migration owner. Schema changes use Wrangler-native migrations under `infra/migrations/`.
-- `kontakter/` may collect and update contact data but must not provision Workers/resources or own D1 schema migrations.
+- Cloudflare D1 är kanonisk runtime-datakälla. Använd inte Git som produktionsdatabas och exportera inte live-D1-snapshots till förrådet.
+- `app/wrangler.jsonc` är källa till sanning för versionshanterad Worker-konfiguration.
+- Produktionsdistribution från `main` hanteras av Cloudflare Workers Builds.
+- App-Workern är ensam ägare av D1-migreringar. Schemaändringar använder Wrangler-migreringar under `infra/migrations/`.
+- `kontakter/` får samla in och uppdatera kontaktdata men ska inte provisionera Workers/resurser eller äga D1-schemaändringar.
 
-## Security invariants
+## Säkerhetsinvarians
 
-- Every account-owned database query must filter on `account_id`; admin endpoints require explicit server-side admin authorization.
-- Credentials, OAuth/session/TOTP secrets and mail encryption keys must never be committed, logged or sent to clients.
-- Contact-data helpers use least privilege and only the permissions needed for contact-data writes.
-- Do not weaken TLS validation.
+- Alla databasfrågor för kontobunden data ska filtrera på `account_id`.
+- Admin-endpoints kräver uttrycklig server-side admin-auktorisering.
+- Credentials, OAuth/session/TOTP-hemligheter och mail-krypteringsnycklar får inte committas, loggas eller skickas till klienter.
+- Kontaktdata-verktyg ska använda minsta nödvändiga behörighet.
+- TLS-validering får inte försvagas.
 
-## Validation
+## Validering
 
-Run the relevant Worker and Python tests/tooling for the changed area. Validate migrations and Wrangler configuration when they change.
-
-The live repository rules currently require `CI / required`, `docker` and Trivy code-scanning policy. Do not rename or remove a required check/scanner without updating and verifying the live ruleset in the same migration.
-
-Pin third-party GitHub Actions to full commit SHAs.
+Kör relevanta Worker- och Python-tester för berörd del. Validera migreringar och Wrangler-konfiguration när de ändras.
